@@ -28,6 +28,7 @@ export const Skills = () => {
   };
 
   return (
+    <div className='skill-con'>
     <section className="skill" id="skills">
         <div className="container">
             <div className="row">
@@ -59,5 +60,6 @@ export const Skills = () => {
         </div>
         <img className="background-image-left" src={colorSharp} alt="Image" />
     </section>
+    </div>
   )
 }
