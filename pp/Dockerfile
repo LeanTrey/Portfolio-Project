@@ -8,7 +8,7 @@ COPY . .
 RUN npm install
 
 # Go into the client directory, install dependencies and build the React app
-WORKDIR /client
+WORKDIR /pp
 RUN npm install && npm run build
 
 # Set the working directory back to the root directory
