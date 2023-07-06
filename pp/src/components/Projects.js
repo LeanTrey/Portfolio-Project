@@ -1,63 +1,66 @@
+import React, { useState } from 'react';
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import colorSharp2 from "../img/color-sharp2.png"
+import iTTT from "../img/ittt.png"
+import EE from "../img/ee.png"
+import GS from "../img/goalset.png"
 
 export const Projects = () => {
 
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const projects = [
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: '',
+      title: "Impossible TTT",
+      description: " Unwinnable TikTacToe",
+      imgUrl: iTTT,
+      projectLink: "https://comfy-scone-e4cd32.netlify.app/",
+      languages: ['JavaScript', 'React', 'CSS']
     },
     {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: '',
+      title: "Ed's Exercises",
+      description: " Uses MongoDB to Log your exercises",
+      imgUrl: EE,
+      projectLink: 'https://fine-pear-armadillo.cyclic.app/',
+      languages: ['EJS', 'CSS', 'JavaScript', 'Node', 'Express', 'MongoDB']
     },
-    // Rest of your project objects
+    {
+      title: "GoalSet",
+      description: " Uses local storage to record your goals and remember them you can toggle when you complete (pure js).",
+      imgUrl: GS,
+      projectLink: 'https://goalset.netlify.app/',
+      languages: ['HTML', 'CSS', 'JS']
+    },
   ];
 
+  const selectProject = (index) => {
+    setSelectedProject(projects[index]);
+  };
+
   return (
-    <section className="project" id="project">
+    <section className="projects" id="projects">
       <Container>
         <Row>
           <Col>
             <h2 className="wf">Projects</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p>These are my projects with their specific skills they involved and an external link to their respective websites.</p>
             <Tab.Container id="projects-tabs" defaultActiveKey="first">
               <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
-                <Nav.Item>
-                  <Nav.Link eventKey="first">Tab 1</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="second">Tab 2</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="third">Tab 3</Nav.Link>
-                </Nav.Item>
+                {projects.map((project, index) => (
+                  <Nav.Item key={index}>
+                    <Nav.Link eventKey={index} onClick={() => selectProject(index)}>
+                      {project.title}
+                    </Nav.Link>
+                  </Nav.Item>
+                ))}
               </Nav>
               <Tab.Content id="slideInUp">
-                <Tab.Pane eventKey="first">
-                  <Row>
-                    {
-                      projects.map((project, index) => {
-                        return (
-                          <ProjectCard
-                            key={index}
-                            {...project}
-                          />
-                        )
-                      })
-                    }
-                  </Row>
-                </Tab.Pane>
-                <Tab.Pane eventKey="second">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </Tab.Pane>
-                <Tab.Pane eventKey="third">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </Tab.Pane>
+                {selectedProject && 
+                  <ProjectCard
+                    {...selectedProject}
+                  />
+                }
               </Tab.Content>
             </Tab.Container>
           </Col>

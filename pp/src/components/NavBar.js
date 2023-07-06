@@ -31,7 +31,7 @@ function NavBar() {
     }
 
   return (
-    <Navbar bg="dark" expand="lg" className={scrolled ? "scrolled": ''}>
+    <Navbar  expand="lg" className={scrolled ? "scrolled": ''}>
       <Container>
         <Navbar.Brand href="#home">
             <img src={mainlogo} alt="logo" className='mainlogo'/>
@@ -47,10 +47,10 @@ function NavBar() {
           </Nav>
           <span className='navbar-text'>
             <div className="social-icon">
-                <a href="#"><img src={twitter} alt="" /></a>
-                <a href="#"><img src={linkedin} alt="" /></a>
+                <a href="https://twitter.com/Edward_Codes"><img src={twitter} alt="twitterlogo" /></a>
+                <a href="https://www.linkedin.com/in/edward-mclean-6073a1263/"><img src={linkedin} alt="linkedinlogo" /></a>
             </div>
-            <button className='vvd' onClick={() => console.log('connect')}><span>Let's Connect</span></button>
+            <button className='vvd' onClick={() => window.location.href="https://www.linkedin.com/in/edward-mclean-6073a1263/"}><span>Let's Connect</span></button>
           </span>
         </Navbar.Collapse>
       </Container>

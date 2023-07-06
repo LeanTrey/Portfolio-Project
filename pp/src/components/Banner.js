@@ -8,16 +8,16 @@ export const Banner = () => {
     const [isDeleting, setIsDeleting] = useState(false)
     const toRotate = [ "Web Developer", "Web Designer", "Web Engineer"]
     const [text, setText] = useState('')
-    const [delta, setDelta] = useState(100 - Math.random() * 50)
     const period = 2000
+    const typingSpeed = 200
+    const deletingSpeed = 150
 
     useEffect(() => {
-        let ticker = setInterval(() => {
-            tick()
-        }, delta)
+        const delta = isDeleting ? deletingSpeed : typingSpeed
+        const timerId = setTimeout(() => tick(), delta)
 
-        return () => { clearInterval(ticker)}
-    }, [text])
+        return () => clearTimeout(timerId)
+    }, [text, isDeleting])
 
     const tick = () => {
         let i = loopNum % toRotate.length
@@ -26,17 +26,11 @@ export const Banner = () => {
 
         setText(updatedText)
 
-        if (isDeleting) {
-            setDelta(prevDelta => prevDelta / 2)
-        }
-
-        if (!isDeleting && updatedText === fullText) {
-            setIsDeleting(true)
-            setDelta(period)
-        } else if(isDeleting && updatedText === '') {
+        if (!isDeleting && text === fullText) {
+            setTimeout(() => setIsDeleting(true), period)
+        } else if (isDeleting && text === '') {
             setIsDeleting(false)
-            setLoopNum(loopNum + 1)
-            setDelta(300)
+            setLoopNum(loopNum => loopNum + 1)
         }
     }
 
@@ -46,9 +40,9 @@ export const Banner = () => {
                 <Row className='align-items-center'>
                     <Col xs={12} md={6} xl={7} >
                         <span className='tagline wf'>Welcome to my Portfolio</span>
-                        <h1 className="wf">{`Hi I'm Edward `}<span className='wrap'>{text}</span></h1>
-                        <p>adfsdafdsafasfsafasfsfsadfasdfasfsasafsafasfsaffsadfsfsdaffsasdfasfsafasfsadfdsafs</p>
-                        <button onClick={() => console.log('connect')}>Let's connect <ArrowRightCircle size={25}/></button>
+                        <h1 className="wf">{`Hi I'm Edward, `}<span className='wrap'>{text}</span></h1>
+                        <p>Self Taught WebDev Currently Doing Freelancing at UpWork.</p>
+                        <button onClick={() => window.location.href="https://www.linkedin.com/in/edward-mclean-6073a1263/"}>Let's connect <ArrowRightCircle size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={5} >
                         <img src={headerImg} alt="Header img" />
