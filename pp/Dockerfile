@@ -4,17 +4,14 @@ FROM node:16
 # Copy all files into the image
 COPY . .
 
-# Install dependencies
+# Install dependencies for the server
 RUN npm install
 
-# Go into the client directory, install dependencies and build the React app
-WORKDIR /pp
-
-# Set the working directory back to the root directory
-WORKDIR /..
+# Build the React app (if located in the root directory)
+RUN npm run build
 
 # Install pm2 globally
 RUN npm install -g pm2
 
 # Start the server with pm2
-CMD ["pm2-runtime", "start", "server.js"]
+CMD ["pm2-runtime", "server.js"]
