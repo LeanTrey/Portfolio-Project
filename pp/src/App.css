@@ -270,6 +270,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   width: 96%;
 }
+
 .banner button {
   color: #fff;
   font-weight: 700;
@@ -379,6 +380,7 @@ border-right: 0.08em solid #666;
   background-color: rgb(255 255 255 / 10%);
   overflow: hidden;
   justify-content: space-around;
+  z-index: 9999;
 }
 
 .projects .nav.nav-pills .nav-item {
@@ -478,6 +480,7 @@ border-right: 0.08em solid #666;
   width: 35%;
   right: 0;
   top: 20%;
+  pointer-events: none;
 }
 
 .projects .project-card {
@@ -578,7 +581,17 @@ border-right: 0.08em solid #666;
   .projects .nav.nav-pills .nav-link {
     font-size: 10px;
   }
-
+  .wf .banner-desc {
+    font-size: 10px;
+  }
+  .cust-one {
+    font-size: 40px;
+    display: block;
+  }
+  .cust-two {
+    font-size: 40px;
+    display: block;
+  }
 }
 
 
